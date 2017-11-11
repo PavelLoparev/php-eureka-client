@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use EurekaClient\Instance\Instance;
 
 /**
- * Class EurekaClient.
+ * Class EurekaClient
  *
  * @see https://github.com/Netflix/eureka/wiki/Eureka-REST-operations Eureka REST operations
  */

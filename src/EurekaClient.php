@@ -1,11 +1,16 @@
 <?php
 
+namespace EurekaClient;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
+use EurekaClient\Instance\Instance;
 
 /**
- * Class EurekaClient
+ * Class EurekaClient.
+ *
+ * @see https://github.com/Netflix/eureka/wiki/Eureka-REST-operations Eureka REST operations
  */
 class EurekaClient {
 
@@ -58,19 +63,19 @@ class EurekaClient {
    * Register app in eureka.
    *
    * @param string $appId
-   * @param array $data
+   * @param Instance $data
    *
    * @throws GuzzleException
    *
    * @return ResponseInterface
    */
-  public function register($appId, array $data) {
+  public function register($appId, Instance $data) {
     return $this->client->request('POST', $this->getEurekaUri() . '/apps/' . $appId, [
       'headers' => [
         'content-type' => 'application/json',
       ],
       'json' => [
-       'instance' => $data,
+        'Instance' => $data->export(),
       ],
     ]);
   }
@@ -132,7 +137,7 @@ class EurekaClient {
   }
 
   /**
-   * Get application instance.
+   * Get application Instance.
    *
    * @param string $appId
    * @param string $instanceId
@@ -148,7 +153,7 @@ class EurekaClient {
   }
 
   /**
-   * Get instance.
+   * Get Instance.
    *
    * @param string $instanceId
    *
@@ -163,7 +168,7 @@ class EurekaClient {
   }
 
   /**
-   * Take instance out of the service.
+   * Take Instance out of the service.
    *
    * @param string $appId
    * @param string $instanceId
@@ -181,7 +186,7 @@ class EurekaClient {
   }
 
   /**
-   * Put instance back into the service.
+   * Put Instance back into the service.
    *
    * @param string $appId
    * @param string $instanceId
@@ -199,7 +204,7 @@ class EurekaClient {
   }
 
   /**
-   * Update app instance metadata.
+   * Update app Instance metadata.
    *
    * @param string $appId
    * @param string $instanceId

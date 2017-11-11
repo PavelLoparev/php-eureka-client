@@ -75,7 +75,7 @@ class EurekaClient {
         'content-type' => 'application/json',
       ],
       'json' => [
-        'Instance' => $data->export(),
+        'instance' => $data->export(),
       ],
     ]);
   }

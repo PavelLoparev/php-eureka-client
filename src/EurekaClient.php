@@ -110,7 +110,7 @@ class EurekaClient {
    * @return array
    */
   public function getAllApps() {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps', [
+    $response = $this->client->request('GET', $this->getEurekaUri() . '/apps', [
       'headers' => [
         'Accept' => 'application/json',
       ],
@@ -129,7 +129,7 @@ class EurekaClient {
    * @return array
    */
   public function getApp($appId) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps/' . $appId, [
+    $response = $this->client->request('GET', $this->getEurekaUri() . '/apps/' . $appId, [
       'headers' => [
         'Accept' => 'application/json',
       ],
@@ -149,7 +149,7 @@ class EurekaClient {
    * @return array
    */
   public function getAppInstance($appId, $instanceId) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps/' . $appId . '/' . $instanceId, [
+    $response = $this->client->request('GET', $this->getEurekaUri() . '/apps/' . $appId . '/' . $instanceId, [
       'headers' => [
         'Accept' => 'application/json',
       ],
@@ -168,7 +168,7 @@ class EurekaClient {
    * @return array
    */
   public function getInstance($instanceId) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /instances/' . $instanceId, [
+    $response = $this->client->request('GET', $this->getEurekaUri() . '/instances/' . $instanceId, [
       'headers' => [
         'Accept' => 'application/json',
       ],
@@ -240,7 +240,7 @@ class EurekaClient {
    * @return array
    */
   public function getInstancesByVipAddress($vipAddress) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /vips/' . $vipAddress, [
+    $response = $this->client->request('GET', $this->getEurekaUri() . '/vips/' . $vipAddress, [
       'headers' => [
         'Accept' => 'application/json',
       ],
@@ -259,7 +259,7 @@ class EurekaClient {
    * @return array
    */
   public function getInstancesBySecureVipAddress($secureVipAddress) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /svips/' . $secureVipAddress, [
+    $response = $this->client->request('GET', $this->getEurekaUri() . '/svips/' . $secureVipAddress, [
       'headers' => [
         'Accept' => 'application/json',
       ],

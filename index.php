@@ -1,11 +1,12 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
 use EurekaClient\EurekaClient;
 use EurekaClient\Instance\Instance;
 use EurekaClient\Instance\Metadata;
 use EurekaClient\Instance\DataCenterInfo;
-
-require_once 'vendor/autoload.php';
+use GuzzleHttp\Client;
 
 $appName = 'new_app';
 $instanceId = 'test_instance_id';
@@ -43,8 +44,11 @@ $instance
   ->setMetadata($metadata)
   ->setDataCenterInfo($dataCenterInfo);
 
+// Create an http client.
+$httpClient = new Client();
+
 // Eureka client usage example.
-$eurekaClient = new EurekaClient('localhost', 8080);
+$eurekaClient = new EurekaClient('localhost', 8080, $httpClient);
 
 try {
   // Register new application instance.

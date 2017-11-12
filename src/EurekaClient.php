@@ -2,7 +2,7 @@
 
 namespace EurekaClient;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use EurekaClient\Instance\Instance;
@@ -25,7 +25,7 @@ class EurekaClient {
   private $port;
 
   /**
-   * @var Client object
+   * @var ClientInterface object
    */
   private $client;
 
@@ -46,17 +46,14 @@ class EurekaClient {
    *
    * @param string $host
    * @param int $port
+   * @param ClientInterface $client
    * @param string $context
    */
-  public function __construct($host, $port, $context = 'eureka/v2') {
+  public function __construct($host, $port, ClientInterface $client, $context = 'eureka/v2') {
     $this->host = $host;
     $this->port = $port;
     $this->context = $context;
-    $this->client = new Client([
-      'headers' => [
-        'Accept' => 'application/json',
-      ],
-    ]);
+    $this->client = $client;
   }
 
   /**
@@ -71,9 +68,6 @@ class EurekaClient {
    */
   public function register($appId, Instance $data) {
     return $this->client->request('POST', $this->getEurekaUri() . '/apps/' . $appId, [
-      'headers' => [
-        'content-type' => 'application/json',
-      ],
       'json' => [
         'instance' => $data->export(),
       ],
@@ -116,7 +110,11 @@ class EurekaClient {
    * @return array
    */
   public function getAllApps() {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps');
+    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps', [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+    ]);
 
     return \GuzzleHttp\json_decode($response->getBody(), true);
   }
@@ -131,7 +129,11 @@ class EurekaClient {
    * @return array
    */
   public function getApp($appId) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps/' . $appId);
+    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps/' . $appId, [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+    ]);
 
     return \GuzzleHttp\json_decode($response->getBody(), true);
   }
@@ -147,7 +149,11 @@ class EurekaClient {
    * @return array
    */
   public function getAppInstance($appId, $instanceId) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps/' . $appId . '/' . $instanceId);
+    $response = $this->client->request('GET', $this->getEurekaUri() . ' /apps/' . $appId . '/' . $instanceId, [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+    ]);
 
     return \GuzzleHttp\json_decode($response->getBody(), true);
   }
@@ -162,7 +168,11 @@ class EurekaClient {
    * @return array
    */
   public function getInstance($instanceId) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /instances/' . $instanceId);
+    $response = $this->client->request('GET', $this->getEurekaUri() . ' /instances/' . $instanceId, [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+    ]);
 
     return \GuzzleHttp\json_decode($response->getBody(), true);
   }
@@ -230,7 +240,11 @@ class EurekaClient {
    * @return array
    */
   public function getInstancesByVipAddress($vipAddress) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /vips/' . $vipAddress);
+    $response = $this->client->request('GET', $this->getEurekaUri() . ' /vips/' . $vipAddress, [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+    ]);
 
     return \GuzzleHttp\json_decode($response->getBody(), true);
   }
@@ -245,7 +259,11 @@ class EurekaClient {
    * @return array
    */
   public function getInstancesBySecureVipAddress($secureVipAddress) {
-    $response = $this->client->request('GET', $this->getEurekaUri() . ' /svips/' . $secureVipAddress);
+    $response = $this->client->request('GET', $this->getEurekaUri() . ' /svips/' . $secureVipAddress, [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+    ]);
 
     return \GuzzleHttp\json_decode($response->getBody(), true);
   }

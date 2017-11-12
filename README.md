@@ -2,7 +2,7 @@
 
 # PHP Eureka Client
 
-PHP client for the [Eureka server](https://github.com/Netflix/eureka). Supports all [Eureka REST operations](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations).
+PHP client for the [Netflix Eureka server](https://github.com/Netflix/eureka). Supports all [Eureka REST operations](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations).
 
 ## Usage example
 ### 1. Use needed packages

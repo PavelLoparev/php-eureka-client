@@ -1,4 +1,15 @@
 {
+  "name": "fluffy/php-eureka-client",
+  "description": "PHP client for the Netflix Eureka server.",
+  "keywords": ["eureka", "Netflix-eureka", "eureka client"],
+  "homepage": "https://github.com/PavelLoparev/php-eureka-client",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Pavel Loparev",
+      "homepage": "https://github.com/PavelLoparev"
+    }
+  ],
   "require": {
     "guzzlehttp/guzzle": "~6"
   },

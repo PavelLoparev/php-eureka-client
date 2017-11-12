@@ -49,7 +49,7 @@ class EurekaClient {
    * @param ClientInterface $client
    * @param string $context
    */
-  public function __construct($host, $port, ClientInterface $client, $context = 'eureka/v2') {
+  public function __construct($host, $port, ClientInterface $client, $context = 'eureka/v2 ') {
     $this->host = $host;
     $this->port = $port;
     $this->context = $context;

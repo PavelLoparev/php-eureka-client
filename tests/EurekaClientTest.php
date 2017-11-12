@@ -121,7 +121,7 @@ class EurekaClientTest extends TestCase {
     // Expectations.
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('POST', 'localhost:8080/eureka/v2/apps/' . $this->appName, [
+      ->with('POST', 'localhost:8080/eureka/v2 /apps/' . $this->appName, [
         'json' => [
           'instance' => $instance->export(),
         ],
@@ -136,7 +136,7 @@ class EurekaClientTest extends TestCase {
   public function testDeRegister() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('DELETE', 'localhost:8080/eureka/v2/apps/' . $this->appName . '/' . $this->instanceId);
+      ->with('DELETE', 'localhost:8080/eureka/v2 /apps/' . $this->appName . '/' . $this->instanceId);
 
     $this->eurekaClient->deRegister($this->appName, $this->instanceId);
   }
@@ -147,7 +147,7 @@ class EurekaClientTest extends TestCase {
   public function testHeartbeat() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('PUT', 'localhost:8080/eureka/v2/apps/' . $this->appName . '/' . $this->instanceId);
+      ->with('PUT', 'localhost:8080/eureka/v2 /apps/' . $this->appName . '/' . $this->instanceId);
 
     $this->eurekaClient->heartBeat($this->appName, $this->instanceId);
   }
@@ -158,7 +158,7 @@ class EurekaClientTest extends TestCase {
   public function testGetAllApps() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('GET', 'localhost:8080/eureka/v2/apps', [
+      ->with('GET', 'localhost:8080/eureka/v2 /apps', [
         'headers' => [
           'Accept' => 'application/json',
         ],
@@ -174,7 +174,7 @@ class EurekaClientTest extends TestCase {
   public function testGetApp() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('GET', 'localhost:8080/eureka/v2/apps/' . $this->appName, [
+      ->with('GET', 'localhost:8080/eureka/v2 /apps/' . $this->appName, [
         'headers' => [
           'Accept' => 'application/json',
         ],
@@ -190,7 +190,7 @@ class EurekaClientTest extends TestCase {
   public function testGetAppInstance() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('GET', 'localhost:8080/eureka/v2/apps/' . $this->appName . '/' . $this->instanceId, [
+      ->with('GET', 'localhost:8080/eureka/v2 /apps/' . $this->appName . '/' . $this->instanceId, [
         'headers' => [
           'Accept' => 'application/json',
         ],
@@ -206,7 +206,7 @@ class EurekaClientTest extends TestCase {
   public function testGetInstance() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('GET', 'localhost:8080/eureka/v2/instances/' . $this->instanceId, [
+      ->with('GET', 'localhost:8080/eureka/v2 /instances/' . $this->instanceId, [
         'headers' => [
           'Accept' => 'application/json',
         ],
@@ -222,7 +222,7 @@ class EurekaClientTest extends TestCase {
   public function testTakeInstanceOut() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('PUT', 'localhost:8080/eureka/v2/apps/' . $this->appName . '/' . $this->instanceId . '/status', [
+      ->with('PUT', 'localhost:8080/eureka/v2 /apps/' . $this->appName . '/' . $this->instanceId . '/status', [
         'query' => [
           'value' => 'OUT_OF_SERVICE',
         ],
@@ -238,7 +238,7 @@ class EurekaClientTest extends TestCase {
   public function testPutInstanceBack() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('PUT', 'localhost:8080/eureka/v2/apps/' . $this->appName . '/' . $this->instanceId . '/status', [
+      ->with('PUT', 'localhost:8080/eureka/v2 /apps/' . $this->appName . '/' . $this->instanceId . '/status', [
         'query' => [
           'value' => 'UP',
         ],
@@ -254,7 +254,7 @@ class EurekaClientTest extends TestCase {
   public function testUpdateAppInstanceMetadata() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('PUT', 'localhost:8080/eureka/v2/apps/' . $this->appName . '/' . $this->instanceId . '/metadata', [
+      ->with('PUT', 'localhost:8080/eureka/v2 /apps/' . $this->appName . '/' . $this->instanceId . '/metadata', [
         'query' => $this->metadata,
       ])
       ->willReturn($this->response);
@@ -268,7 +268,7 @@ class EurekaClientTest extends TestCase {
   public function testGetInstancesByVipAddress() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('GET', 'localhost:8080/eureka/v2/vips/' . $this->vipAddress, [
+      ->with('GET', 'localhost:8080/eureka/v2 /vips/' . $this->vipAddress, [
         'headers' => [
           'Accept' => 'application/json',
         ],
@@ -284,7 +284,7 @@ class EurekaClientTest extends TestCase {
   public function testGetInstancesBySecureVipAddress() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->with('GET', 'localhost:8080/eureka/v2/svips/' . $this->secureVipAddress, [
+      ->with('GET', 'localhost:8080/eureka/v2 /svips/' . $this->secureVipAddress, [
         'headers' => [
           'Accept' => 'application/json',
         ],

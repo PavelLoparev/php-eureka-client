@@ -4,6 +4,19 @@
 
 PHP client for the [Netflix Eureka server](https://github.com/Netflix/eureka). Supports all [Eureka REST operations](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations).
 
+## Installation
+Run
+```
+composer require fluffy/php-eureka-client
+```
+or add dependency to your composer.json file
+```
+"require": {
+    ...
+    "fluffy/php-eureka-client": "^1.0"
+}
+
+```
 ## Usage example
 ### 1. Use needed packages
 ```php
@@ -55,7 +68,11 @@ $instance
 ### 3. Create Eureka client
 ```php
 // Eureka client usage example.
-$eurekaClient = new EurekaClient('localhost', 8080, new Client());
+// Create guzzle client.
+$guzzle = new Client();
+
+// Create eureka client.
+$eurekaClient = new EurekaClient('localhost', 8080, $guzzle);
 ```
 ### 4. Make requests
 ```php

@@ -7,30 +7,31 @@ namespace EurekaClient\Instance;
  *
  * @package EurekaClient\Instance
  */
-abstract class Parameters {
+abstract class Parameters
+{
+    /**
+     * @var array
+     */
+    private $parameters = [];
 
-  /**
-   * @var array
-   */
-  private $parameters = [];
+    /**
+     * @param string $key
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    protected function set($key, $value)
+    {
+        $this->parameters[$key] = $value;
 
-  /**
-   * @param string $key
-   * @param mixed $value
-   *
-   * @return $this
-   */
-  protected function set($key, $value) {
-    $this->parameters[$key] = $value;
+        return $this;
+    }
 
-    return $this;
-  }
-
-  /**
-   * @return array
-   */
-  public function export() {
-    return $this->parameters;
-  }
-
+    /**
+     * @return array
+     */
+    public function export()
+    {
+        return $this->parameters;
+    }
 }

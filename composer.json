@@ -3,7 +3,7 @@
   "description": "PHP client for the Netflix Eureka server.",
   "keywords": ["eureka", "Netflix-eureka", "eureka client"],
   "homepage": "https://github.com/PavelLoparev/php-eureka-client",
-  "license": "GPLv3",
+  "license": "GPL-3.0-or-later",
   "authors": [
     {
       "name": "Pavel Loparev",

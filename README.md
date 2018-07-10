@@ -36,7 +36,7 @@ $instanceId = 'test_instance_id';
 $metadata = new Metadata();
 $metadata->set('test_key', 'test_value');
 
-// Create data center metadata.
+// Create data center metadata (required for Amazon only).
 $dataCenterMetadata = new Metadata();
 $dataCenterMetadata->set('data_center_test_key', 'data_center_test_value');
 
@@ -46,6 +46,12 @@ $dataCenterInfo
   ->setName('Amazon')
   ->setClass('com.netflix.appinfo.AmazonInfo')
   ->setMetadata($dataCenterMetadata);
+
+// Create data center info (Own Data Center).
+$dataCenterInfo = new DataCenterInfo();
+$dataCenterInfo
+  ->setName('MyOwn')
+  ->setClass('com.netflix.appinfo.MyDataCenterInfo');
 
 // Create Eureka app instance.
 $instance = new Instance();
@@ -71,8 +77,11 @@ $instance
 // Create guzzle client.
 $guzzle = new Client();
 
-// Create eureka client.
+// Create eureka v2 client.
 $eurekaClient = new EurekaClient('localhost', 8080, $guzzle);
+
+// Create eureka v1 client.
+$eurekaClient = new EurekaClient('localhost', 8080, $guzzle, 'eureka');
 ```
 ### 4. Make requests
 ```php
